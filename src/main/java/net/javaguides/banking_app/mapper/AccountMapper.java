@@ -2,7 +2,9 @@ package net.javaguides.banking_app.mapper;
 
 import net.javaguides.banking_app.dto.AccountDto;
 import net.javaguides.banking_app.entity.Account;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AccountMapper {
 
 

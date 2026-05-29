@@ -1,24 +1,19 @@
 package net.javaguides.banking_app.service;
 
+import net.javaguides.banking_app.dto.AccountDto;
 import net.javaguides.banking_app.entity.Account;
-import net.javaguides.banking_app.mapper.AccountMapper;
-import net.javaguides.banking_app.repository.AccountRepository;
-import org.springframework.stereotype.Service;
 
-@Service
-public class AccountService {
+import java.util.List;
 
-    private final AccountRepository accountRepository;
-    private final AccountMapper accountMapper;
+public interface AccountService {
 
-    public AccountService(AccountRepository accountRepository, AccountMapper accountMapper) {
-        this.accountRepository = accountRepository;
-        this.accountMapper = accountMapper;
-    }
+    public Account getAccount(Long id);
 
-    public Account getAccount(Long id) {
-        //Account account = accountMapper.toAccount(accountDto);
-        return accountRepository.getById(id);
-    }
+    public Account createAccount(AccountDto accountDto);
 
+    public List<AccountDto> getAllAccounts();
+
+    public AccountDto deposit(Long id, double amount);
+
+    public AccountDto withdraw(Long id, double amount);
 }

@@ -1,24 +1,25 @@
 package net.javaguides.banking_app.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-
+@Setter
+@Getter
 @Entity
 public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "account_holder_name")
     private String accountHolderName;
-    private Long balance;
+    private Double balance;
 
     public Account(){
 
     }
-    public Account(Long id, String accountHolderName, Long balance) {
+    public Account(Long id, String accountHolderName, Double balance) {
         this.id = id;
         this.accountHolderName = accountHolderName;
         this.balance = balance;
@@ -40,11 +41,11 @@ public class Account {
         this.id = id;
     }
 
-    public Long getBalance() {
+    public Double getBalance() {
         return balance;
     }
 
-    public void setBalance(Long balance) {
+    public void setBalance(Double balance) {
         this.balance = balance;
     }
 }
