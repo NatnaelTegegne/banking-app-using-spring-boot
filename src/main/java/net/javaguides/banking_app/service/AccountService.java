@@ -1,21 +1,24 @@
 package net.javaguides.banking_app.service;
 
 import net.javaguides.banking_app.dto.AccountDto;
+import net.javaguides.banking_app.dto.TransferFundDto;
 import net.javaguides.banking_app.entity.Account;
 
 import java.util.List;
 
 public interface AccountService {
 
-    public Account getAccount(Long id);
+    AccountDto getAccount(Long id);
 
-    public Account createAccount(AccountDto accountDto);
+    Account createAccount(AccountDto accountDto);
 
-    public List<AccountDto> getAllAccounts();
+    List<AccountDto> getAllAccounts();
 
-    public AccountDto deposit(Long id, double amount);
+    AccountDto deposit(Long id, double amount);
 
-    public AccountDto withdraw(Long id, double amount);
+    AccountDto withdraw(Long id, double amount);
 
-    public String deleteAccount(Long id);
+    String deleteAccount(Long id);
+
+    void transferFunds(TransferFundDto transferFundDto);
 }
