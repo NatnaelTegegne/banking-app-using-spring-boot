@@ -65,4 +65,15 @@ public class AccountServiceImpl implements AccountService {
         }
 
     }
+
+    @Override
+    public String deleteAccount(Long id) {
+        Account account = accountRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Account not found with id" + id));
+
+        accountRepository.delete(account);
+        return "Successfully deleted the account.";
+    }
+
+
 }

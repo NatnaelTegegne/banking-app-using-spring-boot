@@ -16,4 +16,6 @@ public interface AccountService {
     public AccountDto deposit(Long id, double amount);
 
     public AccountDto withdraw(Long id, double amount);
+
+    public String deleteAccount(Long id);
 }
