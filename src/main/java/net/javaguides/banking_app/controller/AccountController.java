@@ -1,6 +1,7 @@
 package net.javaguides.banking_app.controller;
 
 import net.javaguides.banking_app.dto.AccountDto;
+import net.javaguides.banking_app.dto.TransactionDto;
 import net.javaguides.banking_app.dto.TransferFundDto;
 import net.javaguides.banking_app.entity.Account;
 import net.javaguides.banking_app.mapper.AccountMapper;
@@ -42,8 +43,8 @@ public class AccountController {
     }
 
     @PutMapping("/{id}/deposit")
-    public ResponseEntity<AccountDto> deposit(@PathVariable Long id, @RequestBody double amount) {
-        AccountDto accountDto = accountService.deposit(id, amount);
+    public ResponseEntity<AccountDto> deposit(@PathVariable Long id, @RequestBody Map<String, Double> request) {
+        AccountDto accountDto = accountService.deposit(id, request.get("amount"));
         return ResponseEntity.ok(accountDto);
 
     }
@@ -61,10 +62,16 @@ public class AccountController {
     }
 
     @PutMapping("/transfer")
-    public ResponseEntity<String> tranferTo(@RequestBody TransferFundDto transferFundDto) {
+    public ResponseEntity<String> transferTo(@RequestBody TransferFundDto transferFundDto) {
         accountService.transferFunds(transferFundDto);
 
         return new ResponseEntity<>("Transfer Completed.", HttpStatus.ACCEPTED);
     }
 
+    @GetMapping("/{id}/accountTransactions")
+    public ResponseEntity<List<TransactionDto>> getAccountTransactions(@PathVariable("id") Long accountId) {
+        List<TransactionDto> transactions = accountService.getAccountTransactions(accountId);
+
+        return ResponseEntity.ok(transactions);
+    }
 }
